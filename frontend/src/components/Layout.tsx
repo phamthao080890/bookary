@@ -9,6 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { t } = useLanguage();
   const location = useLocation();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     setShowLogoutConfirm(true);
@@ -38,9 +39,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, {} as Record<string, typeof navItems>);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-64 bg-white shadow-xl flex flex-col border-r border-gray-200">
+    <div className="flex min-h-screen flex-col md:flex-row bg-gray-100">
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      <div className={`fixed inset-y-0 left-0 z-50 w-72 transform bg-white shadow-xl border-r border-gray-200 transition duration-200 md:relative md:translate-x-0 md:w-64 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-teal-50 to-teal-100 space-y-3">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -62,6 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Link
                     key={item.path}
                     to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className={`flex items-center px-4 py-3 rounded-lg transition duration-200 ${
                       location.pathname === item.path
                         ? 'bg-teal-700 text-white shadow-md'
@@ -125,11 +133,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
-          {children}
+      {/* Mobile Top Bar */}
+      <div className="md:hidden bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="text-2xl text-teal-700"
+          aria-label={t('nav.openMenu')}
+        >
+          ☰
+        </button>
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold text-teal-700">Bookary</span>
         </div>
+      </div>
+
+      <div className="flex-1 overflow-auto p-4 md:p-8">
+        {children}
       </div>
     </div>
   );

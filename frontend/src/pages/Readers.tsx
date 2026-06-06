@@ -150,7 +150,7 @@ export default function Readers() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-4xl font-bold text-gray-900">{t('readers.title')}</h1>
           <p className="text-gray-600 mt-1">{t('readers.total')}: <span className="font-semibold text-teal-700">{total}</span></p>
