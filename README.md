@@ -452,3 +452,5 @@ MIT
 ## Support
 
 For issues or questions, check the troubleshooting section above or review the code structure.
+
+Test triggering auto-deploy
