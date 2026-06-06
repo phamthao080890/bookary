@@ -316,8 +316,8 @@ export default function Books() {
                         if (errors.code) setErrors({ ...errors, code: '' });
                       }
                     }}
-                    readOnly={editingId !== null}
-                    className={`input-field flex-1 ${editingId !== null ? 'bg-gray-100 cursor-not-allowed' : ''} ${errors.code ? 'border-red-500 focus:ring-red-500' : ''}`}
+                    readOnly={true}
+                    className={`input-field flex-1 bg-gray-100 cursor-not-allowed ${errors.code ? 'border-red-500 focus:ring-red-500' : ''}`}
                   />
                   {!editingId && (
                     <button

@@ -307,15 +307,15 @@ export default function Readers() {
                     placeholder="VD: DG0000000001"
                     value={formData.code}
                     onChange={(e) => {
-                      if (!editingId) {
+                      if (editingId) {
                         setFormData({ ...formData, code: e.target.value });
                         if (errors.code) {
                           setErrors({ ...errors, code: '' });
                         }
                       }
                     }}
-                    readOnly={editingId !== null}
-                    className={`input-field flex-1 ${editingId !== null ? 'bg-gray-100 cursor-not-allowed' : ''} ${errors.code ? 'border-red-500 focus:ring-red-500' : ''}`}
+                    readOnly={true}
+                    className={`input-field flex-1 bg-gray-100 cursor-not-allowed ${errors.code ? 'border-red-500 focus:ring-red-500' : ''}`}
                   />
                   {!editingId && (
                     <button

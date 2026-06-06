@@ -127,6 +127,7 @@ Frontend runs on `http://localhost:5173`
 ```bash
 cd backend
 npm install
+npx prisma generate
 npm run build     # Compiles TypeScript to dist/
 npm start         # Runs compiled JavaScript
 ```
@@ -135,6 +136,8 @@ npm start         # Runs compiled JavaScript
 ```bash
 cd frontend
 npm install
+npm run dev
+
 npm run build     # Bundles with Vite to dist/
 npm run preview   # Preview production build
 ```
